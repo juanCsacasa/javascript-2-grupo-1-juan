@@ -1,6 +1,9 @@
 //1. Escriba una function que escriba un número a la inversa
 function alverris(numero) {
   let alverrisnuevo = "";
+  if (typeof numero === "number") {
+    numero = numero.toString()
+  }
   for (let i = numero.length - 1; i >= 0; i--) {
     alverrisnuevo += numero[i];
   }
