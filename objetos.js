@@ -104,8 +104,21 @@ function EstudianteConstructor(nombre, apellidos, fechaNacimiento, id, nuevoIngr
     }
     //this.cursosMatriculados = this.cursosMatriculados.filter(item => item !== curso); // devuelve un array con los elementos que cumplen con la condición
   }
+
+  //1. Crear un método que permita agregar cursos a la lista de cursos aprobados. El usuario debe poder ingresar un objeto con el nombre del curso, nota.
+  //2. Y dependiendo la nota se agrega de manera automática una propiedad nueva que se llama estado: cuyo valor sera de aprobado (nota > 70) o reprobado (nota < 70) ***
+
+  this.nota = function (curso) {
+/*
+    if (nota >= 70) {
+      console.log("Aprobado");
+    }
+    else if (nota > 70) {
+      console.log("Reprobado");
+    }*/
+  }
 }
 
-const estudiantePrueba = new EstudianteConstructor('Test', 'Testing', '1990-10-30', 'arq-0001', false, 'Arquitectura', ['Introducción a la pintura', 'Historia del Arte I'], [{ curso: 'Prueba', nota: 50 }])
+const estudiantePrueba = new EstudianteConstructor('Test', 'Testing', '1990-10-30', 'arq-0001', false, 'Arquitectura', ['Introducción a la pintura', 'Historia del Arte I'])
 
 console.log(estudiantePrueba);
