@@ -5,9 +5,13 @@
 1.4.Comics // lista de comics
 1.5.Debe contar un método que permita agregar libros y comics a la librería */
 class Libreria {
+  #Nombre
+  #Direccion
+  #Libros
+  #Comics
   constructor(Nombre, Direccion){
-    this.Nombre = Nombre
-    this.Direccion = Direccion
+    this.#Nombre = Nombre
+    this.#Direccion = Direccion
     this.Libros = []
     this.Comics = []
   }
@@ -54,7 +58,13 @@ class Libro{
     if (this.#Cantidad == 0) {
       this.#Cantidad = "No hay ejemplares disponibles"
     }
-    return this.#Titulo + " " + this.#Autor + "  " + this.#Precio + " " + this.#Cantidad + " " + this.#Año 
+    return {
+      Titulo: this.#Titulo, 
+      Autor: this.#Autor,
+      Precio: this.#Precio, 
+      Cantidad: this.#Cantidad, 
+      Año: this.#Año
+    }
   }
 }
 
@@ -71,10 +81,16 @@ class Comic extends Libro{
     this.#Editorial = Editorial
     this.#Volumen = Volumen
   }
-  get getInfo2(){
-    return   this.#Dibujante + " " + this.#Editorial + " " + this.#Volumen
+  get getInfo() {
+      const info = super.getInfo;
+      return {
+          ...info,
+          Dibujante: this.#Dibujante,
+          Editorial: this.#Editorial,
+          Volumen: this.#Volumen
+      }
+    }
   }
-}
 
 /*4. Los usuarios no pueden modificar datos de los libros o comics, 
     pero sí pueden modificar la cantidad de libros disponibles, o el año, de igual forma 
@@ -89,17 +105,17 @@ de un libro o comic, este debe llamarse "getInfo". */
 debe mostrar un mensaje que diga "No hay ejemplares disponibles".*/
 
 //llamados ejercicio uno
-const Objeto = new Libreria ("sadsa","dsasdsd");
+const Objeto = new Libreria ("Libreria publica de Aserri","Aserri");
 Objeto.agregarObjeto ("Fundacion e Imperio")
 Objeto.agregarObjeto2 ("Batman")
 console.log(Objeto)
 
 //llamados ejercicio dos
-let libroUno = new Libro ("sdasdas","sdasda",2312312,0,3212);
+const libroUno = new Libro ("sdasdas","sdasda",2312312,0,3212);
 libroUno.modificarAño = -1500;
 console.log(libroUno.getInfo);
 
 //llamados ejercicio tres
-let comicUno = new Comic ("Fairy tail","sdasda",2312312,0,3212,"dasda","sdasdsdd",9);
+const comicUno = new Comic ("One punch man","Yusuke Murata",10000,3,2012,"Yusuke Murata","Panini",4);
 libroUno.modificarAño = -1500;
-console.log(comicUno.getInfo,comicUno.getInfo2);
+console.log(comicUno.getInfo);
