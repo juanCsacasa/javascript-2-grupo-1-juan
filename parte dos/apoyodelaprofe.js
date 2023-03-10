@@ -125,15 +125,15 @@ const menu = ['Show Books', 'Show Comics', 'Add book', 'Add Comic'];
 
 
 const createMenu = () => {
-  const menuList = document.createElement('ul');
+  const List = document.createElement('ul');
 
   menu.forEach(item => {
-    const listItem = document.createElement('li');
-    listItem.textContent = item;
-    menuList.appendChild(listItem);
+    const element = document.createElement('li');
+    element.textContent = item;
+    List.appendChild(element);
   });
 
-  sidebar.appendChild(menuList);
+  sidebar.appendChild(List);
 }
 createMenu()
 

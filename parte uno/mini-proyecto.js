@@ -53,7 +53,6 @@ class Libro{
   set modificarAño (Value){
     this.#Año = Value;
   }
-
   get getInfo(){
     if (this.#Cantidad == 0) {
       this.#Cantidad = "No hay ejemplares disponibles"
