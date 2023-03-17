@@ -16,7 +16,7 @@ class Book {
   getInfo() {
     return {
       title: this.#title,
-      auhor: this.#author,
+      author: this.#author,
       price: this.#price,
       year: this.#year,
       stock: !this.#stock ? 'No hay ejemplares disponibles' : this.#stock

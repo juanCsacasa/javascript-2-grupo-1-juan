@@ -12,7 +12,7 @@ import Comic from './modules/Comic.js';
     displayMenu();
     menuFunctionality();
   }
-  
+
   const printBookstoreName = () => {
     sidebar.insertAdjacentHTML(
       'afterbegin',
@@ -22,7 +22,7 @@ import Comic from './modules/Comic.js';
       </h2>`
     )
   }
-  
+
   const createMenu = () => {
     let menuHtml = '';
     menu.forEach((elem, index) => {
@@ -31,26 +31,26 @@ import Comic from './modules/Comic.js';
         <button id="${index}">${elem}</button>
       </li>`
     });
-  
+
     return menuHtml;
   }
-  
+
   const displayMenu = () => {
     sidebar.insertAdjacentHTML(
       'beforeend',
       `<ul class="menu">${createMenu()}</ul>`
     );
   }
-  
+
   const menuFunctionality = () => {
     const items = document.querySelectorAll('.menu-item');
     items.forEach((item) => {
       item.addEventListener('click', (event) => {
         // e.stopPropagation(); // esto es para evitar que el evento se extienda/propague al los elementos padres
         event.preventDefault(); // esto es para evitar que se recargue la página cuando se hace click en el elemento, en este al elemeto li del menu
-  
+
         const { id } = event.target
-  
+
         switch (id) {
           case '0':
             showBooks();
@@ -71,41 +71,51 @@ import Comic from './modules/Comic.js';
       });
     });
   }
-  
-  
-  const showBooks = () => {
-    console.log('Show Books');
-    console.log(bookstore1.getBooks)
-  }
-  
-  const showComics = () => {
-    console.log('Show Comics');
-    console.log(bookstore1.getComics)
-  }
-  
+
+//book
   const addBooks = () => {
     const title = prompt('Title');
     const author = prompt('Author');
     const price = prompt('Price');
     const stock = prompt('Stock');
     const year = prompt('Year');
-  
+
     if (title && author && !isNaN(price) && !isNaN(stock) && !isNaN(year)) {
       const book = new Book(title, author, price, stock, year);
-      
-      const existingBook = bookstore1.getBooks.find(b => b.title === title);
-      if (existingBook) {
-        alert('El libro ya existe en la lista.');
+
+      const repeatedBook = bookstore1.getBooks.find(b => b.title === title);
+      if (repeatedBook) {
+        alert('The book already exists.');
         return;
       }
-  
       bookstore1.setBooks = book.getInfo();
     } else {
-      alert('Debe ingresar valores válidos.');
+      alert('enter valid values.');
     }
-  
   }
-  
+  const showBooks = () => {
+    const books = bookstore1.getBooks;
+    const bookElements = viewBook(books);
+    const mainContent = document.getElementById('main-content');
+    mainContent.innerHTML = '';
+    mainContent.insertAdjacentHTML('beforeend', bookElements);
+  }
+  const viewBook = (books) => {
+    let bookHtml = '';
+    books.forEach((book) => {
+      bookHtml += `
+      <div class="book">
+      <p>title: ${book.title}</p>
+      <p>author: ${book.author}</p>
+      <p>price:${book.price}</p>
+      <p>stock: ${book.stock}</p>
+      <p>year: ${book.year}</p>
+      </div>
+    `;
+    });
+    return bookHtml;
+  }
+//comic
   const addComics = () => {
     console.log('add comics');
 
@@ -121,17 +131,41 @@ import Comic from './modules/Comic.js';
     if (title && author && !isNaN(price) && !isNaN(stock) && !isNaN(year) && illustrator && publisher && !isNaN(volume)) {
       const comic = new Comic(title, author, price, stock, year, illustrator, publisher, volume);
 
-      const existingComic = bookstore1.getComics.find(c => c.title === title);
-      if (existingComic) {
-        alert('El cómic ya existe en la lista.');
+      const repeatedComic  = bookstore1.getComics.find(c => c.title === title);
+      if (repeatedComic){
+        alert('The book already exists.');
         return;
       }
       bookstore1.setComics = comic.getInfo();
     } else {
-      alert('Debe ingresar valores válidos.');
+      alert('enter valid values.');
     }
-  
   }
-  
+  const showComics = () => {
+    const comics = bookstore1.getComics;
+    const comicElements = viewComic(comics);
+    const mainContent = document.getElementById('main-content');
+    mainContent.innerHTML = '';
+    mainContent.insertAdjacentHTML('beforeend', comicElements);
+  }
+  const viewComic = (comics) => {
+    let comicHtml = '';
+    comics.forEach((comic) => {
+      comicHtml += `
+        <div class="comic">
+          <p>Title: ${comic.title}<p>
+          <p>Author: ${comic.author}</p>
+          <p>Price: ${comic.price}</p>
+          <p>Stock: ${comic.stock}</p>
+          <p>Year: ${comic.year}</p>
+          <p>Illustrator: ${comic.illustrator}</p>
+          <p>Publisher: ${comic.publisher}</p>
+          <p>Volume: ${comic.volume}</p>
+        </div>
+      `;
+    });
+    return comicHtml;
+  }
+
   initialize();
 })();

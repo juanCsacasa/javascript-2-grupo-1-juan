@@ -15,7 +15,7 @@ class Comic extends Book {
     const info = super.getInfo();
     return {
       ...info,
-      illustratorhi: this.#illustrator,
+      illustrator: this.#illustrator,
       publisher: this.#publisher,
       volume: this.#volume
     }
