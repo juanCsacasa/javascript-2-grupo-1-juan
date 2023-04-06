@@ -1,4 +1,4 @@
-const listChutemon = 'https://pokeapi.co/api/v2/pokemon?offset=1&limit=802w';
+const listChutemon = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=802w';
 const nameChutemon = `https://pokeapi.co/api/v2/pokemon/{name}`
 const chutemonSelect = document.getElementById('pokemonSelect');
 const chutemonDetail = document.getElementById('pokemon-detail');
